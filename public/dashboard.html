@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Student Management System</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <header class="navbar">
+        <h1>Student Management System</h1>
+        <button id="logoutBtn" class="btn-danger">Logout</button>
+    </header>
+
+    <div class="container">
+        <!-- Add Student Form Section -->
+        <div class="card">
+            <h3>Add New Student</h3>
+            <form id="studentForm">
+                <div class="form-row">
+                    <input type="text" id="name" placeholder="Full Name" required>
+                    <input type="email" id="email" placeholder="Email Address" required>
+                    <input type="text" id="course" placeholder="Course Name" required>
+                    <button type="submit" class="btn-success">Add Student</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Student List Section -->
+        <div class="card">
+            <h3>Registered Students</h3>
+            <div class="table-responsive">
+                <table class="student-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Course</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="studentTableBody">
+                        <!-- Student rows will be loaded here dynamically -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="./js/dashboard.js"></script>
+</body>
+</html>
