@@ -10,19 +10,25 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middleware
-app.use(cors());
+app.use(cors({
+    origin: [
+        'https://sujal101.github.io',
+        'http://localhost:5500'
+    ]
+}));
+
 app.use(express.json());
 
-// Routes
-app.use('/api/auth', authRoutes);         // Handles login and registration
-app.use('/api/students', studentRoutes);   // Handles protected student CRUD operations
+// API routes
+app.use('/api/auth', authRoutes);
+app.use('/api/students', studentRoutes);
 
-// Basic Test Route
+// Test route
 app.get('/', (req, res) => {
     res.send('Student Management System API is running...');
 });
 
-// Start Server
-app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
+// Start server
+app.listen(PORT, '0.0.0.0', () => {
+    console.log(`Server running on port ${PORT}`);
 });
