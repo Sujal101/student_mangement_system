@@ -9,18 +9,22 @@ const studentRoutes = require('./routes/studentRoutes');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// CORS configuration
+// CORS configuration — use the exact origin shown in your browser console
 const corsOptions = {
-    origin: 'https://sujal101.github.io',
+    origin: [
+        'https://sujal101.github.io',
+        'http://localhost:5500'
+    ],
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization']
 };
 
-// Middleware
+// IMPORTANT: CORS must run before your API routes
 app.use(cors(corsOptions));
+
 app.use(express.json());
 
-// Health check
+// Test route
 app.get('/', (req, res) => {
     res.send('Student Management System API is running...');
 });
