@@ -9,26 +9,27 @@ const studentRoutes = require('./routes/studentRoutes');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Middleware
-app.use(cors({
-    origin: [
-        'https://sujal101.github.io',
-        'http://localhost:5500'
-    ]
-}));
+// CORS configuration
+const corsOptions = {
+    origin: 'https://sujal101.github.io',
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+};
 
+// Middleware
+app.use(cors(corsOptions));
 app.use(express.json());
+
+// Health check
+app.get('/', (req, res) => {
+    res.send('Student Management System API is running...');
+});
 
 // API routes
 app.use('/api/auth', authRoutes);
 app.use('/api/students', studentRoutes);
 
-// Test route
-app.get('/', (req, res) => {
-    res.send('Student Management System API is running...');
-});
-
 // Start server
 app.listen(PORT, '0.0.0.0', () => {
-    console.log(`Server running on port ${PORT}`);
+    console.log(`Server is running on port ${PORT}`);
 });
